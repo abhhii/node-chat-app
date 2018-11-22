@@ -28,8 +28,8 @@ io.on('connection', (socket) => {
         //     createdAt: new Date().getTime()
         // }); 
 
-        socket.broadcast.emit('newMessage', generateMessage(message.from, message.text));
-        callback('Hi! I am the mysterious server');
+        io.emit('newMessage', generateMessage(message.from, message.text));
+        callback();
     });
 
     socket.on('createLocationMessage', (coords) => {
