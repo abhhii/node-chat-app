@@ -11,7 +11,15 @@
 <body>
     <p>WELCOME TO THE CHAT APP</p>
 
+    <ol id='messages'></ol>
+
+    <form id= "message-form" >
+        <input name = "message" type="text" placeholder="Enter your message"/> 
+        <button>Send</button>
+    </form>
+
     <script src="/socket.io/socket.io.js"></script>
+    <script src= "/js/libs/jquery.js"></script>
     <script src= "/js/index.js"></script>
 </body>
 </html>

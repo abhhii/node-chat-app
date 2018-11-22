@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
 
     socket.broadcast.emit('newMessage', generateMessage('Admin', 'A new user joined the chat room'));
 
-    socket.on('createMessage', (message) => {
+    socket.on('createMessage', (message, callback) => {
         console.log('create new Message', message);
         // io.emit('newMessage', {
         //     from: message.from,
@@ -29,6 +29,7 @@ io.on('connection', (socket) => {
         // }); 
 
         socket.broadcast.emit('newMessage', generateMessage(message.from, message.text));
+        callback('Hi! I am the mysterious server');
     });
 
     socket.on('disconnect', () => {
