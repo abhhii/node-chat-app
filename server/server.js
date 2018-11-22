@@ -13,25 +13,20 @@ app.use(express.static(publicPath));
 
 io.on('connection', (socket) => {
     console.log('New user connected');
-    
-    // socket.emit('newEmail', {
-    //     from: 'tracer@example.com',
-    //     text: 'Wassssssuppp, Bruhhhhh!!!!',
-    //     createdAt: 254
+
+    // socket.emit('newMessage', {
+    //     from: 'Abhishek',
+    //     text: 'Flying like an asteroid in kupiter belt',
+    //     createdAt: 556
     // });
-
-    // socket.on('createEmail', (newEmail) => {
-    //     console.log('createEmail', newEmail);
-    // })
-
-    socket.emit('newMessage', {
-        from: 'Abhishek',
-        text: 'Flying like an asteroid in kupiter belt',
-        createdAt: 556
-    });
 
     socket.on('createMessage', (message) => {
         console.log('create new Message', message);
+        io.emit('newMessage', {
+            from: message.from,
+            text: message.text,
+            createdAt: new Date().getTime()
+        });
     });
 
     socket.on('disconnect', () => {
